@@ -18,7 +18,7 @@ const HeroSection = () => {
                 // Same substring at the start will only be typed out once, initially
                 "Mamad",
                 1000, // wait 1s before replacing "Mice" with "Hamsters"
-                "Web developer",
+                "Web Developer",
                 1000,
                 "Backend Developer",
                 1000,
@@ -32,18 +32,34 @@ const HeroSection = () => {
             />
           </h1>
           <p className="text-[#ADB7BE] text-base mb-6 sm:text-lg lg:text-xl">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, ipsa?
-            Earum, tempora!
+            I am a student at the Politeknik Elektronika Negeri Surabaya. I
+            majored in Informatics Engineering. I am interested in the elds of
+            Frontend, Mobile and Backend development. For studies, I have
+            experience in Flutter Mobile, Software Quality Assurance, and served
+            as Assistant Product Owner of Simple Wallet. I also have experience
+            in Frontend and Backend development.
           </p>
           <div>
-            <button className="px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 hover:bg-slate-200 text-white">
-              Hire Me
-            </button>
-            <button className="px-1 py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 hover:bg-slate-800  text-white mt-3">
-              <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
-                Download CV
-              </span>
-            </button>
+            <a
+              href="https://www.linkedin.com/in/muhammadrizalgg/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block"
+            >
+              <button className="px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 hover:bg-slate-200 text-white">
+                Hire Me
+              </button>
+            </a>
+            <a
+              href="/documents/Muhammad Rizal_CV.pdf"
+              download="Muhammad_Rizal_CV.pdf"
+            >
+              <button className="px-1 py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 hover:bg-slate-800  text-white mt-3">
+                <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
+                  Download CV
+                </span>
+              </button>
+            </a>
           </div>
         </div>
         <div className="col-span-5 place-self-center mt-4 lg:mt-0">

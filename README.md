@@ -1,5 +1,5 @@
 source : https://www.youtube.com/watch?v=Kb1f5bvF6f4&t=128s
-done : Header 1.2-navbar
+done : about section
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

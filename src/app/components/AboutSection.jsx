@@ -8,7 +8,7 @@ const TabData = [
     title: "Skills",
     id: "skills",
     content: (
-      <ul>
+      <ul className="list-disc pl-2">
         <li>HTML</li>
         <li>CSS</li>
         <li>JavaScript</li>
@@ -27,7 +27,7 @@ const TabData = [
     title: "Educations",
     id: "educations",
     content: (
-      <ul>
+      <ul className="list-disc pl-2">
         <li>D4 Computer Science of Politeknik Elektronika Negeri Surabaya</li>
       </ul>
     ),
@@ -36,7 +36,7 @@ const TabData = [
     title: "Experiences",
     id: "experiences",
     content: (
-      <ul>
+      <ul className="list-disc pl-2">
         <li>Frontend E-Vote for HIMA</li>
         <li>Assisten Product Owner of Simple Wallet</li>
         <li>Backend Mail Sistem of Facult Univ</li>
@@ -55,7 +55,7 @@ const AboutSection = () => {
   };
 
   return (
-    <section className="text-white">
+    <section id="about" className="text-white">
       <div className="md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16">
         <div className="h-full">
           {" "}
