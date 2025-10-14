@@ -5,50 +5,70 @@ import NavLink from "./NavLink";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import MenuOverlay from "./MenuOverlay";
 
-const navLinks = [
-  { title: "About", href: "#about" },
-  // { title: "Projects", href: "#projects" },
-  // { title: "Contact", href: "#contact" },
-];
+const navLinks = [{ title: "About", href: "#about" }];
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
+
   return (
-    <nav className="fixed mx-auto top-0 left-0 right-0 z-10 bg-[#121212] bg-opacity-100">
-      <div className="flex container lg:py-4 flex-wrap items-center justify-between mx-auto px-4 py-2">
-        <Link
-          href={"/"}
-          className="text-2xl md:text-5xl text-white font-semibold"
-        >
-          {/* Logo */}
-        </Link>
-        <div className="mobile-menu block md:hidden">
-          {!navbarOpen ? (
+    <nav
+      className="
+        fixed inset-x-0 top-0 z-50
+        bg-white/60 backdrop-blur-md
+        supports-[backdrop-filter]:bg-white/40
+        dark:bg-black/30 dark:supports-[backdrop-filter]:bg-black/20
+        border-b border-black/5 dark:border-white/10
+        shadow-sm
+      "
+      aria-label="Main Navigation"
+    >
+      <div className="mx-auto max-w-6xl px-4">
+        <div className="flex h-14 md:h-16 items-center justify-between">
+          {/* Brand / Logo */}
+          <Link
+            href="/"
+            className="text-lg md:text-2xl font-semibold tracking-tight text-slate-800 dark:text-slate-100"
+          >
+            Muhammad Rizal
+          </Link>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden">
             <button
-              onClick={() => setNavbarOpen(true)}
-              className="flex item-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
+              onClick={() => setNavbarOpen((s) => !s)}
+              aria-label="Toggle menu"
+              aria-expanded={navbarOpen}
+              className="
+                inline-flex items-center justify-center
+                rounded-lg border border-slate-300/40 dark:border-white/10
+                px-3 py-2
+                text-slate-700 dark:text-slate-200
+                hover:bg-white/40 hover:dark:bg-white/10
+                transition
+              "
             >
-              <Bars3Icon className="h-5 w-5" />
+              {navbarOpen ? (
+                <XMarkIcon className="h-5 w-5" />
+              ) : (
+                <Bars3Icon className="h-5 w-5" />
+              )}
             </button>
-          ) : (
-            <button
-              onClick={() => setNavbarOpen(false)}
-              className="flex item-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
-            >
-              <XMarkIcon className="h-5 w-5" />
-            </button>
-          )}
-        </div>
-        <div className="menu hidden md:block md:w-auto" id="navbar">
-          <ul className="flex p-4 md:p-0 md:flex-row md:space-x-8 mt-0">
-            {navLinks.map((link, index) => (
-              <li key={index}>
-                <NavLink href={link.href} title={link.title} />
-              </li>
-            ))}
-          </ul>
+          </div>
+
+          {/* Desktop menu */}
+          <div className="hidden md:block">
+            <ul className="flex items-center gap-6">
+              {navLinks.map((link, i) => (
+                <li key={i}>
+                  <NavLink href={link.href} title={link.title} />
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
+
+      {/* Mobile overlay menu */}
       {navbarOpen ? <MenuOverlay links={navLinks} /> : null}
     </nav>
   );

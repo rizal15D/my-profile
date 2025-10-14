@@ -8,6 +8,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  scroll-behavior: smooth;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,6 +17,11 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
+  /* :root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 240, 240, 240;
+    --background-end-rgb: 255, 255, 255;
+  } */
 }
 
 body {
@@ -32,4 +38,14 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.snap-container {
+  height: 100vh;
+  overflow-y: auto; /* penting: container yang di-scroll */
+  scroll-snap-type: y mandatory;
+}
+.snap-section {
+  min-height: 100vh; /* full layar */
+  scroll-snap-align: start; /* nempel di awal */
 }

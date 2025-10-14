@@ -7,7 +7,6 @@ import Section from "@/components/Section";
 export default function Home() {
   return (
     <main className="snap-container">
-      <Navbar />
       <HeroSection2 />
       <Section id="coba" className="text-white">
         coba
