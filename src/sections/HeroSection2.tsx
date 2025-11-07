@@ -4,6 +4,7 @@ import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
 import Section from "@/components/Section";
 import SkillTags from "@/components/SkillTags";
+import Starfield from "@/components/Starfield";
 
 export default function HeroSection2() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -28,112 +29,6 @@ export default function HeroSection2() {
     "Git",
   ];
 
-  useEffect(() => {
-    const canvas = canvasRef.current!;
-    const ctx = canvas.getContext("2d")!;
-    let raf = 0;
-
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    // DPR + resize
-    const fit = () => {
-      const r = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-      const parent = canvas.parentElement!;
-      const w = parent.clientWidth;
-      const h = parent.clientHeight;
-      canvas.width = Math.floor(w * r);
-      canvas.height = Math.floor(h * r);
-      canvas.style.width = `${w}px`;
-      canvas.style.height = `${h}px`;
-      ctx.setTransform(r, 0, 0, r, 0, 0);
-    };
-    fit();
-
-    type Star = { x: number; y: number; r: number; p: number; tw: number };
-    const stars: Star[] = [];
-
-    const regen = () => {
-      stars.length = 0;
-      const w = canvas.parentElement!.clientWidth;
-      const h = canvas.parentElement!.clientHeight;
-
-      // density responsif: lebih jarang di mobile
-      const baseDiv = w < 420 ? 12000 : w < 768 ? 10000 : 9000;
-      const count = Math.max(40, Math.min(220, Math.floor((w * h) / baseDiv)));
-
-      for (let i = 0; i < count; i++) {
-        stars.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          r: Math.random() * 1.3 + 0.4,
-          p: Math.random() * Math.PI * 2,
-          tw: prefersReduced ? 0 : 1.3 + Math.random() * 2.1,
-        });
-      }
-    };
-    regen();
-
-    let tResize: any;
-    const onResize = () => {
-      clearTimeout(tResize);
-      tResize = setTimeout(() => {
-        fit();
-        regen();
-      }, 120);
-    };
-
-    const draw = (t: number) => {
-      const w = canvas.width / (window.devicePixelRatio || 1);
-      const h = canvas.height / (window.devicePixelRatio || 1);
-      ctx.clearRect(0, 0, w, h);
-
-      // background gradient tipis
-      const g = ctx.createLinearGradient(0, 0, 0, h);
-      g.addColorStop(0, "rgba(11,13,23,0.85)");
-      g.addColorStop(1, "rgba(2,6,23,0.85)");
-      ctx.fillStyle = g;
-      ctx.fillRect(0, 0, w, h);
-
-      for (const s of stars) {
-        const a =
-          s.tw === 0
-            ? 0.7
-            : 0.25 + 0.75 * (0.5 + 0.5 * Math.sin(s.p + (t / 1000) * s.tw));
-        ctx.globalAlpha = a;
-        ctx.fillStyle = "#ffffff";
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.globalAlpha = a * 0.35;
-        ctx.fillStyle = Math.random() < 0.5 ? "#B3C7FF" : "#E7B3FF";
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r * 0.8, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      ctx.globalAlpha = 1;
-      raf = requestAnimationFrame(draw);
-    };
-
-    // pause saat tab tidak aktif
-    const onVis = () => {
-      if (document.hidden) cancelAnimationFrame(raf);
-      else raf = requestAnimationFrame(draw);
-    };
-
-    window.addEventListener("resize", onResize);
-    document.addEventListener("visibilitychange", onVis);
-    raf = requestAnimationFrame(draw);
-
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", onResize);
-      document.removeEventListener("visibilitychange", onVis);
-    };
-  }, []);
-
   return (
     <Section
       id="hero"
@@ -146,11 +41,7 @@ export default function HeroSection2() {
       "
     >
       {/* Starfield canvas */}
-      <canvas
-        ref={canvasRef}
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-      />
+      <Starfield className="absolute inset-0 z-0" density={1.2} />
 
       {/* Glow besar: sembunyikan di mobile untuk performa */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden hidden sm:block">
@@ -324,7 +215,7 @@ export default function HeroSection2() {
                 </button>
               </a>
               <a
-                href="/documents/Muhammad Rizal_cv.pdf"
+                href="https://pdfs.cake.me/r/s--00BFBXzKtb7T33-gMygMEQ--/Muhammad%20Rizal.pdf"
                 download="Muhammad_Rizal_CV.pdf"
                 className="inline-block"
               >
