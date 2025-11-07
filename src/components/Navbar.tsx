@@ -5,7 +5,7 @@ import NavLink from "./NavLink";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import MenuOverlay from "./MenuOverlay";
 
-const navLinks = [{ title: "About", href: "#about" }];
+const navLinks = [{ title: "Experiences", href: "#experience" }];
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -26,7 +26,7 @@ const Navbar = () => {
         <div className="flex h-14 md:h-16 items-center justify-between">
           {/* Brand / Logo */}
           <Link
-            href="/"
+            href="#hero"
             className="text-lg md:text-2xl font-semibold tracking-tight text-slate-800 dark:text-slate-100"
           >
             Muhammad Rizal
