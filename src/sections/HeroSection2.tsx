@@ -217,12 +217,32 @@ export default function HeroSection2() {
               <a
                 href="https://pdfs.cake.me/r/s--00BFBXzKtb7T33-gMygMEQ--/Muhammad%20Rizal.pdf"
                 download="Muhammad_Rizal_CV.pdf"
-                className="inline-block"
+                className="inline-block w-full sm:w-auto"
               >
-                <button className="px-1 py-1 w-full sm:w-auto rounded-full bg-white/10 hover:bg-white/15 border border-white/15 transition">
-                  <span className="block rounded-full px-5 py-2 text-white">
-                    Download CV
-                  </span>
+                <button
+                  className="
+                    relative px-6 py-3 w-full sm:w-auto rounded-full 
+                    bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 
+                    text-white font-medium 
+                    flex justify-center items-center gap-2
+                    hover:scale-[1.03] transition-transform
+                  "
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 4v12m0 0l-4-4m4 4l4-4m-8 8h8"
+                    />
+                  </svg>
+                  <span>Download CV</span>
                 </button>
               </a>
             </div>
