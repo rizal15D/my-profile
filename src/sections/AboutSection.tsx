@@ -48,7 +48,11 @@ const TabData = [
 const AboutSection = () => {
   const [tab, setTab] = useState("skills");
   const [isPending, startTransition] = useTransition();
-  const handleTabChange = (id) => {
+  interface TabId {
+    id: "skills" | "educations" | "experiences";
+  }
+
+  const handleTabChange = (id: TabId["id"]): void => {
     startTransition(() => {
       setTab(id);
     });
@@ -101,7 +105,7 @@ const AboutSection = () => {
             </TabButton>
           </div>
           <div className="mt-8">
-            {TabData.find((t) => t.id === tab).content}
+            {TabData.find((t) => t.id === tab)?.content}
           </div>
         </div>
       </div>

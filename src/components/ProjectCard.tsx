@@ -1,6 +1,13 @@
 import React from "react";
 
-const ProjectCard = ({ imgUrl, title, description }) => {
+interface ProjectCardProps {
+  imgUrl: string;
+  title: string;
+  description: string;
+  tag?: string[];
+}
+
+const ProjectCard = ({ imgUrl, title, description, tag }: ProjectCardProps) => {
   return (
     <div>
       <div
