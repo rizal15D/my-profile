@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
 import Section from "@/components/Section";
@@ -7,8 +7,6 @@ import SkillTags from "@/components/SkillTags";
 import Starfield from "@/components/Starfield";
 
 export default function HeroSection2() {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-
   const skills = [
     "Next JS",
     "Laravel",

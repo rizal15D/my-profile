@@ -7,7 +7,7 @@ interface ProjectCardProps {
   tag?: string[];
 }
 
-const ProjectCard = ({ imgUrl, title, description, tag }: ProjectCardProps) => {
+const ProjectCard = ({ imgUrl, title, description }: ProjectCardProps) => {
   return (
     <div>
       <div

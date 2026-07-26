@@ -1,12 +1,10 @@
 "use client";
-import React, { useRef } from "react";
+import React from "react";
 import Section from "@/components/Section";
 import Box from "@/components/Box";
 import Starfield from "@/components/Starfield";
 
 export default function ExperienceSection() {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-
   const experiences = [
     {
       role: "Fullstack Developer",

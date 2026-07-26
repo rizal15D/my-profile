@@ -47,7 +47,7 @@ const TabData = [
 
 const AboutSection = () => {
   const [tab, setTab] = useState("skills");
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
   interface TabId {
     id: "skills" | "educations" | "experiences";
   }

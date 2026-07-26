@@ -78,7 +78,7 @@ export default function Starfield({
     };
     regen();
 
-    let tResize: any;
+    let tResize: ReturnType<typeof setTimeout>;
     const onResize = () => {
       clearTimeout(tResize);
       tResize = setTimeout(() => {
