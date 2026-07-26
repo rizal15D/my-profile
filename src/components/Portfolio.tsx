@@ -102,7 +102,7 @@ function SectionIntro({
         <p
           className={cn(
             "mb-3 text-xs font-bold uppercase tracking-[0.16em]",
-            inverse ? "text-teal-300" : "text-primary",
+            inverse ? "text-blue-300" : "text-primary",
           )}
         >
           {eyebrow}
@@ -174,7 +174,7 @@ export default function Portfolio() {
             href="#top"
             className="flex items-center gap-3 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
-            <span className="grid size-8 place-items-center rounded-sm bg-foreground text-sm font-bold text-background">
+            <span className="blue-gradient grid size-8 place-items-center rounded-sm text-sm font-bold text-white">
               {profile.names[locale].charAt(0)}
             </span>
             <span className="text-sm font-bold">{profile.names[locale]}</span>
@@ -278,6 +278,10 @@ export default function Portfolio() {
       <main id="top">
         <section className="relative flex min-h-[calc(100svh-5rem)] items-center border-b border-border pt-28 pb-12">
           <div
+            className="blue-ambient pointer-events-none absolute inset-0"
+            aria-hidden="true"
+          />
+          <div
             className="pointer-events-none absolute inset-0 opacity-60 dark:opacity-20"
             aria-hidden="true"
           >
@@ -290,7 +294,7 @@ export default function Portfolio() {
                 variant="outline"
                 className="mb-6 border-primary/30 bg-primary/5 px-3 py-1.5 text-primary"
               >
-                <span className="size-2 rounded-full bg-emerald-500" />
+                <span className="size-2 rounded-full bg-blue-500" />
                 {t.availability}
               </Badge>
 
@@ -298,8 +302,8 @@ export default function Portfolio() {
                 {t.role}
               </p>
               <h1 className="max-w-4xl text-6xl font-bold leading-[0.95] text-balance sm:text-7xl lg:text-[6.75rem]">
-                {t.headline}
-                <span className="text-primary">.</span>
+                <span className="blue-gradient-text">{t.headline}</span>
+                <span className="text-blue-500">.</span>
               </h1>
               <p className="mt-6 max-w-3xl text-2xl font-semibold leading-tight sm:text-3xl">
                 {t.heroLead}
@@ -350,10 +354,10 @@ export default function Portfolio() {
 
             <div className="relative mx-auto w-full max-w-md lg:mx-0 lg:justify-self-end">
               <div
-                className="absolute -left-4 top-8 h-[calc(100%-4rem)] w-full rounded-sm bg-primary"
+                className="blue-gradient absolute -left-4 top-8 h-[calc(100%-4rem)] w-full rounded-sm"
                 aria-hidden="true"
               />
-              <div className="relative aspect-[4/5] overflow-hidden rounded-sm border border-border bg-[#dce5e2] dark:bg-[#1c2926]">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-sm border border-blue-200 bg-blue-50 dark:border-blue-900 dark:bg-blue-950">
                 <Image
                   src={profile.portrait}
                   alt={t.portraitAlt}
@@ -479,7 +483,7 @@ export default function Portfolio() {
 
         <section
           id="experience"
-          className="scroll-mt-16 bg-[#151918] py-24 text-white"
+          className="scroll-mt-16 bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950 py-24 text-white"
         >
           <div className="mx-auto max-w-7xl px-5 sm:px-8">
             <SectionIntro
@@ -520,7 +524,7 @@ export default function Portfolio() {
                       </span>
                       <div>
                         <h3 className="text-lg font-bold">{experience.role}</h3>
-                        <p className="mt-1 text-sm text-teal-300">
+                        <p className="mt-1 text-sm text-blue-300">
                           {experience.company}
                         </p>
                         <p className="mt-2 text-sm text-neutral-400">
@@ -550,7 +554,7 @@ export default function Portfolio() {
                       </span>
                       <div>
                         <h3 className="text-lg font-bold">{experience.role}</h3>
-                        <p className="mt-1 text-sm text-teal-300">
+                        <p className="mt-1 text-sm text-blue-300">
                           {experience.company}
                         </p>
                         <p className="mt-2 text-sm text-neutral-400">
@@ -566,7 +570,7 @@ export default function Portfolio() {
                             key={detail}
                             className="grid grid-cols-[0.5rem_1fr] gap-3 text-sm leading-7 text-neutral-300"
                           >
-                            <span className="mt-3 size-1.5 rounded-full bg-teal-300" />
+                            <span className="mt-3 size-1.5 rounded-full bg-blue-300" />
                             <span>{detail}</span>
                           </li>
                         ))}
@@ -647,16 +651,16 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <section className="bg-primary py-24 text-primary-foreground">
+        <section className="blue-gradient py-24 text-white">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
             <div>
-              <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-primary-foreground/70">
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-white/70">
                 {t.contactEyebrow}
               </p>
               <h2 className="max-w-3xl text-4xl font-bold leading-tight sm:text-5xl">
                 {t.contactTitle}
               </h2>
-              <p className="mt-5 max-w-2xl text-base leading-7 text-primary-foreground/80">
+              <p className="mt-5 max-w-2xl text-base leading-7 text-white/80">
                 {t.contactBody}
               </p>
             </div>
@@ -678,7 +682,7 @@ export default function Portfolio() {
                   <ArrowUpRight />
                 </a>
               </Button>
-              <p className="max-w-sm text-sm text-primary-foreground/65 lg:text-right">
+              <p className="max-w-sm text-sm text-white/65 lg:text-right">
                 {t.contactNote}
               </p>
             </div>

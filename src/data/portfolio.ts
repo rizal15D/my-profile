@@ -10,7 +10,7 @@ export const profile = {
   fullName: "Muhammad Rizal",
   linkedIn: "https://www.linkedin.com/in/muhammadrizalgg/",
   cv: "/documents/Muhammad Rizal_cv.pdf",
-  portrait: "/images/Removal-10-2.png",
+  portrait: "/images/foto.png",
 };
 
 export const copy = {
