@@ -60,6 +60,14 @@ async function checkViewport(name, viewport) {
     errors.push("dark mode class was not applied");
   }
 
+  await page.locator("#experience").scrollIntoViewIfNeeded();
+  await page.getByRole("tab", { name: "Details", exact: true }).click();
+  await page
+    .getByText("Develop and maintain RESTful APIs using Golang, Python, and JavaScript.", {
+      exact: true,
+    })
+    .waitFor();
+
   await page.screenshot({
     path: `.next/portfolio-${name}.png`,
     fullPage: true,

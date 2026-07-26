@@ -34,6 +34,12 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
+import {
   copy,
   experiences,
   type Locale,
@@ -483,30 +489,93 @@ export default function Portfolio() {
               inverse
             />
 
-            <div className="mt-14 border-t border-white/15">
-              {experiences.map((experience, index) => (
-                <article
-                  key={`${experience.company}-${experience.date.en}`}
-                  className="grid gap-4 border-b border-white/15 py-8 md:grid-cols-[3rem_1fr_1fr] md:gap-8"
+            <Tabs defaultValue="summary" className="mt-12">
+              <TabsList className="bg-white/10 text-neutral-300">
+                <TabsTrigger
+                  value="summary"
+                  className="data-[state=active]:bg-white data-[state=active]:text-neutral-950"
                 >
-                  <span className="font-mono text-xs text-neutral-500">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-bold">{experience.role}</h3>
-                    <p className="mt-1 text-sm text-teal-300">
-                      {experience.company}
-                    </p>
-                    <p className="mt-2 text-sm text-neutral-400">
-                      {experience.date[locale]}
-                    </p>
-                  </div>
-                  <p className="text-sm leading-7 text-neutral-300">
-                    {experience.description[locale]}
-                  </p>
-                </article>
-              ))}
-            </div>
+                  {t.experienceSummary}
+                </TabsTrigger>
+                <TabsTrigger
+                  value="details"
+                  className="data-[state=active]:bg-white data-[state=active]:text-neutral-950"
+                >
+                  {t.experienceDetails}
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="summary" className="mt-5">
+                <p className="mb-5 text-sm text-neutral-400">
+                  {t.experienceSummaryHint}
+                </p>
+                <div className="border-t border-white/15">
+                  {experiences.map((experience, index) => (
+                    <article
+                      key={`${experience.company}-${experience.date.en}`}
+                      className="grid gap-4 border-b border-white/15 py-8 md:grid-cols-[3rem_1fr_1fr] md:gap-8"
+                    >
+                      <span className="font-mono text-xs text-neutral-500">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <h3 className="text-lg font-bold">{experience.role}</h3>
+                        <p className="mt-1 text-sm text-teal-300">
+                          {experience.company}
+                        </p>
+                        <p className="mt-2 text-sm text-neutral-400">
+                          {experience.date[locale]}
+                        </p>
+                      </div>
+                      <p className="text-sm leading-7 text-neutral-300">
+                        {experience.description[locale]}
+                      </p>
+                    </article>
+                  ))}
+                </div>
+              </TabsContent>
+
+              <TabsContent value="details" className="mt-5">
+                <p className="mb-5 text-sm text-neutral-400">
+                  {t.experienceDetailsHint}
+                </p>
+                <div className="border-t border-white/15">
+                  {experiences.map((experience, index) => (
+                    <article
+                      key={`${experience.company}-${experience.date.en}-details`}
+                      className="grid gap-5 border-b border-white/15 py-9 md:grid-cols-[3rem_0.7fr_1.3fr] md:gap-8"
+                    >
+                      <span className="font-mono text-xs text-neutral-500">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <h3 className="text-lg font-bold">{experience.role}</h3>
+                        <p className="mt-1 text-sm text-teal-300">
+                          {experience.company}
+                        </p>
+                        <p className="mt-2 text-sm text-neutral-400">
+                          {experience.date[locale]}
+                        </p>
+                        <p className="mt-1 text-xs text-neutral-500">
+                          {experience.location}
+                        </p>
+                      </div>
+                      <ul className="space-y-3">
+                        {experience.details[locale].map((detail) => (
+                          <li
+                            key={detail}
+                            className="grid grid-cols-[0.5rem_1fr] gap-3 text-sm leading-7 text-neutral-300"
+                          >
+                            <span className="mt-3 size-1.5 rounded-full bg-teal-300" />
+                            <span>{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </article>
+                  ))}
+                </div>
+              </TabsContent>
+            </Tabs>
           </div>
         </section>
 
