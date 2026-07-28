@@ -1,12 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useSyncExternalStore } from "react";
+import Link from "next/link";
+import { useMemo } from "react";
 import {
   ArrowDownToLine,
+  ArrowRight,
   ArrowUp,
   ArrowUpRight,
   BriefcaseBusiness,
+  CalendarDays,
   Code2,
   Contact,
   Layers3,
@@ -14,6 +17,7 @@ import {
   Moon,
   ServerCog,
   Sun,
+  Timer,
 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -39,51 +43,29 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs";
+import { ArticleArtwork } from "@/components/ArticleArtwork";
 import {
   copy,
   experiences,
-  type Locale,
   profile,
   projects,
   services,
   skillGroups,
 } from "@/data/portfolio";
+import { articles } from "@/data/articles";
+import { usePortfolioPreferences } from "@/hooks/use-portfolio-preferences";
 import { cn } from "@/lib/utils";
 
-type Theme = "light" | "dark";
-
-const navIds = ["work", "services", "experience", "skills", "about"] as const;
+const navIds = [
+  "work",
+  "services",
+  "experience",
+  "skills",
+  "articles",
+  "about",
+] as const;
 
 const serviceIcons = [Layers3, ServerCog, BriefcaseBusiness] as const;
-const preferenceEvent = "portfolio-preference-change";
-
-function subscribeToPreferences(callback: () => void) {
-  const colorScheme = window.matchMedia("(prefers-color-scheme: dark)");
-  window.addEventListener("storage", callback);
-  window.addEventListener(preferenceEvent, callback);
-  colorScheme.addEventListener("change", callback);
-
-  return () => {
-    window.removeEventListener("storage", callback);
-    window.removeEventListener(preferenceEvent, callback);
-    colorScheme.removeEventListener("change", callback);
-  };
-}
-
-function getLocaleSnapshot(): Locale {
-  return window.localStorage.getItem("portfolio-locale") === "en" ? "en" : "id";
-}
-
-function getThemeSnapshot(): Theme {
-  const storedTheme = window.localStorage.getItem("portfolio-theme");
-  if (storedTheme === "light" || storedTheme === "dark") {
-    return storedTheme;
-  }
-
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-}
 
 function SectionIntro({
   eyebrow,
@@ -129,21 +111,8 @@ function SectionIntro({
 }
 
 export default function Portfolio() {
-  const locale = useSyncExternalStore<Locale>(
-    subscribeToPreferences,
-    getLocaleSnapshot,
-    () => "id",
-  );
-  const theme = useSyncExternalStore<Theme>(
-    subscribeToPreferences,
-    getThemeSnapshot,
-    () => "light",
-  );
-
-  useEffect(() => {
-    document.documentElement.lang = locale;
-    document.documentElement.classList.toggle("dark", theme === "dark");
-  }, [locale, theme]);
+  const { locale, theme, changeLocale, toggleTheme } =
+    usePortfolioPreferences();
 
   const t = copy[locale];
   const navItems = useMemo(
@@ -154,17 +123,6 @@ export default function Portfolio() {
       })),
     [t],
   );
-
-  function changeLocale(nextLocale: Locale) {
-    window.localStorage.setItem("portfolio-locale", nextLocale);
-    window.dispatchEvent(new Event(preferenceEvent));
-  }
-
-  function toggleTheme() {
-    const nextTheme = theme === "light" ? "dark" : "light";
-    window.localStorage.setItem("portfolio-theme", nextTheme);
-    window.dispatchEvent(new Event(preferenceEvent));
-  }
 
   return (
     <div className="min-h-screen overflow-x-clip bg-background text-foreground">
@@ -616,8 +574,81 @@ export default function Portfolio() {
         </section>
 
         <section
-          id="about"
+          id="articles"
           className="scroll-mt-16 border-b border-border bg-muted/45 py-24"
+        >
+          <div className="mx-auto max-w-7xl px-5 sm:px-8">
+            <SectionIntro
+              eyebrow={t.articlesEyebrow}
+              title={t.articlesTitle}
+              body={t.articlesBody}
+            />
+
+            <div className="mt-12 grid gap-6 lg:grid-cols-2">
+              {articles.map((article) => (
+                <Card
+                  key={article.slug}
+                  className="group h-full overflow-hidden rounded-xl transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <ArticleArtwork
+                    theme={article.theme}
+                    locale={locale}
+                    className="border-b border-border"
+                  />
+
+                  <CardHeader className="grow">
+                    <Badge className="mb-2 w-fit">
+                      {article.category[locale]}
+                    </Badge>
+                    <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-muted-foreground">
+                      <span className="inline-flex items-center gap-1.5">
+                        <CalendarDays className="size-3.5" />
+                        {article.publishedLabel[locale]}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5">
+                        <Timer className="size-3.5" />
+                        {article.readingTime[locale]}
+                      </span>
+                    </div>
+                    <CardTitle className="pt-3 text-xl leading-snug">
+                      <Link
+                        href={`/articles/${article.slug}`}
+                        className="outline-none transition-colors hover:text-primary focus-visible:text-primary"
+                      >
+                        {article.title[locale]}
+                      </Link>
+                    </CardTitle>
+                    <CardDescription className="pt-2">
+                      {article.excerpt[locale]}
+                    </CardDescription>
+                  </CardHeader>
+
+                  <CardContent>
+                    <Button variant="link" className="h-auto p-0" asChild>
+                      <Link href={`/articles/${article.slug}`}>
+                        {t.readArticle}
+                        <ArrowRight className="transition-transform group-hover:translate-x-1" />
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="mt-10 flex justify-center">
+              <Button variant="outline" size="lg" asChild>
+                <Link href="/articles">
+                  {t.viewAllArticles}
+                  <ArrowRight />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="about"
+          className="scroll-mt-16 border-b border-border py-24"
         >
           <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr]">
             <div>

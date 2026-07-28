@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
+
+import { siteConfig } from "@/lib/site";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: "Rizal | Fullstack Software Developer",
     template: "%s | Rizal",
@@ -18,6 +22,14 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Muhammad Rizal" }],
   creator: "Muhammad Rizal",
+  publisher: "Muhammad Rizal",
+  category: "technology",
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": "/feed.xml",
+    },
+  },
   openGraph: {
     type: "website",
     locale: "id_ID",
@@ -36,6 +48,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 

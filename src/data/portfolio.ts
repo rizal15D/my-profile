@@ -21,6 +21,7 @@ export const copy = {
       services: "Layanan",
       experience: "Pengalaman",
       skills: "Keahlian",
+      articles: "Artikel",
       about: "Tentang",
     },
     menu: "Buka menu",
@@ -67,6 +68,12 @@ export const copy = {
     skillsTitle: "Perangkat yang saya gunakan untuk menyelesaikan masalah.",
     skillsBody:
       "Saya memilih teknologi berdasarkan kebutuhan produk, kemampuan tim, dan kemudahan operasional.",
+    articlesEyebrow: "Catatan engineering",
+    articlesTitle: "Panduan arsitektur untuk keputusan yang lebih terukur.",
+    articlesBody:
+      "Pembahasan mendalam tentang CQRS dan kontrak backend–frontend, dilengkapi contoh, checklist, serta referensi akademik.",
+    readArticle: "Baca artikel",
+    viewAllArticles: "Lihat semua artikel",
     aboutEyebrow: "Tentang saya",
     aboutTitle: "Engineer yang memahami produk dan proses.",
     aboutBody:
@@ -94,6 +101,7 @@ export const copy = {
       services: "Services",
       experience: "Experience",
       skills: "Skills",
+      articles: "Articles",
       about: "About",
     },
     menu: "Open menu",
@@ -140,6 +148,12 @@ export const copy = {
     skillsTitle: "Tools I use to solve product problems.",
     skillsBody:
       "I select technology around product requirements, team capability, and operational maintainability.",
+    articlesEyebrow: "Engineering notes",
+    articlesTitle: "Architecture guides for more deliberate decisions.",
+    articlesBody:
+      "In-depth guides to CQRS and backend–frontend contracts, with examples, checklists, and academic references.",
+    readArticle: "Read article",
+    viewAllArticles: "View all articles",
     aboutEyebrow: "About me",
     aboutTitle: "An engineer who understands product and process.",
     aboutBody:
