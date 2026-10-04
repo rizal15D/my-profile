@@ -1,10 +1,13 @@
 import {
+  Activity,
   ArrowRight,
   Braces,
   Check,
+  CreditCard,
   Database,
   MonitorSmartphone,
   Server,
+  ShieldCheck,
 } from "lucide-react";
 
 import type { ArticleTheme } from "@/data/articles";
@@ -22,6 +25,8 @@ const labels = {
   id: {
     cqrs: "Diagram jalur command dan query pada CQRS",
     contract: "Diagram kontrak yang menghubungkan backend dan frontend",
+    ledgerbank:
+      "Diagram transfer aman dari API LedgerBank ke database dan event broker",
     command: "COMMAND",
     query: "QUERY",
     write: "Write model",
@@ -31,10 +36,14 @@ const labels = {
     frontend: "FRONTEND",
     contractLabel: "API CONTRACT",
     verified: "Terverifikasi",
+    transfer: "TRANSFER",
+    protected: "Konsisten & terlindungi",
   },
   en: {
     cqrs: "Diagram of command and query paths in CQRS",
     contract: "Diagram of a contract connecting backend and frontend",
+    ledgerbank:
+      "Diagram of a secure transfer from the LedgerBank API to the database and event broker",
     command: "COMMAND",
     query: "QUERY",
     write: "Write model",
@@ -44,6 +53,8 @@ const labels = {
     frontend: "FRONTEND",
     contractLabel: "API CONTRACT",
     verified: "Verified",
+    transfer: "TRANSFER",
+    protected: "Consistent & protected",
   },
 } as const;
 
@@ -143,6 +154,115 @@ export function ArticleArtwork({
             <div className="flex items-center justify-between border-t border-white/10 pt-4 text-xs text-white/45">
               <span>intent → state</span>
               <span>projection → view</span>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  if (theme === "ledgerbank") {
+    return (
+      <div
+        role="img"
+        aria-label={t.ledgerbank}
+        className={cn(
+          "relative overflow-hidden bg-gradient-to-br from-emerald-950 via-slate-950 to-cyan-950 text-white",
+          isHero ? "min-h-[22rem] rounded-2xl p-6 sm:p-8" : "h-44 p-5",
+          className,
+        )}
+      >
+        <div
+          className="absolute -right-16 -top-16 size-52 rounded-full bg-emerald-400/20 blur-3xl"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute -bottom-20 -left-10 size-56 rounded-full bg-cyan-500/20 blur-3xl"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 opacity-[0.07]"
+          aria-hidden="true"
+          style={{
+            backgroundImage:
+              "linear-gradient(135deg, white 1px, transparent 1px)",
+            backgroundSize: isHero ? "28px 28px" : "20px 20px",
+          }}
+        />
+
+        <div className="relative flex h-full flex-col justify-between">
+          <div className="flex items-center justify-between text-[0.65rem] font-bold tracking-[0.2em] text-emerald-200/70">
+            <span>LEDGERBANK</span>
+            <span className="font-mono">03 / 03</span>
+          </div>
+
+          <div
+            className={cn(
+              "grid items-center",
+              isHero
+                ? "my-auto grid-cols-[1fr_auto_1fr_auto_1fr] gap-2 sm:gap-4"
+                : "mt-6 grid-cols-[1fr_auto_1fr_auto_1fr] gap-1.5",
+            )}
+          >
+            <div className="grid justify-items-center gap-2 text-center">
+              <span
+                className={cn(
+                  "grid place-items-center rounded-xl border border-emerald-300/20 bg-emerald-300/10",
+                  isHero ? "size-14" : "size-9",
+                )}
+              >
+                <CreditCard className={cn(isHero ? "size-6" : "size-4")} />
+              </span>
+              <span className="text-[0.55rem] font-bold tracking-[0.12em] text-emerald-200 sm:text-[0.65rem]">
+                {t.transfer}
+              </span>
+            </div>
+
+            <ArrowRight className="size-3 text-emerald-300 sm:size-4" />
+
+            <div
+              className={cn(
+                "grid place-items-center rounded-xl border border-white/15 bg-white/10",
+                isHero ? "min-h-24 px-5" : "min-h-14 px-3",
+              )}
+            >
+              <Database
+                className={cn(
+                  "text-cyan-300",
+                  isHero ? "size-8" : "size-5",
+                )}
+              />
+              {isHero && (
+                <span className="mt-2 font-mono text-[0.6rem] text-white/50">
+                  POSTGRESQL
+                </span>
+              )}
+            </div>
+
+            <ArrowRight className="size-3 text-cyan-300 sm:size-4" />
+
+            <div className="grid justify-items-center gap-2 text-center">
+              <span
+                className={cn(
+                  "grid place-items-center rounded-xl border border-cyan-300/20 bg-cyan-300/10",
+                  isHero ? "size-14" : "size-9",
+                )}
+              >
+                <Activity className={cn(isHero ? "size-6" : "size-4")} />
+              </span>
+              <span className="text-[0.55rem] font-bold tracking-[0.12em] text-cyan-200 sm:text-[0.65rem]">
+                EVENT
+              </span>
+            </div>
+          </div>
+
+          {isHero && (
+            <div className="flex items-center justify-between border-t border-white/10 pt-4 text-xs text-white/45">
+              <span>atomic transfer → outbox → event</span>
+              <span className="inline-flex items-center gap-1.5 text-emerald-300/80">
+                <ShieldCheck className="size-3.5" />
+                {t.protected}
+              </span>
             </div>
           )}
         </div>

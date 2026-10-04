@@ -6,6 +6,7 @@ const baseUrl = "http://127.0.0.1:3002";
 const articlePaths = [
   "/articles/cqrs-command-query-responsibility-segregation",
   "/articles/kontrak-backend-frontend-api-contract-first",
+  "/articles/ledgerbank-core-banking-simulator",
 ];
 const viewports = {
   desktop: { width: 1440, height: 900 },
