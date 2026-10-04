@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
+  ArrowUp,
   BookOpenText,
   CalendarDays,
   Check,
@@ -59,6 +61,7 @@ const detailCopy = {
     standard: "Spesifikasi",
     documentation: "Dokumentasi resmi",
     citedSource: "Lihat sumber",
+    backToTop: "Kembali ke atas",
   },
   en: {
     back: "All articles",
@@ -88,6 +91,7 @@ const detailCopy = {
     standard: "Specification",
     documentation: "Official docs",
     citedSource: "View source",
+    backToTop: "Back to top",
   },
 } as const;
 
@@ -197,11 +201,34 @@ export default function ArticleDetail({ article }: { article: Article }) {
   const preferences = usePortfolioPreferences();
   const { locale } = preferences;
   const t = detailCopy[locale];
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const currentIndex = articles.findIndex((item) => item.slug === article.slug);
   const nextArticle =
     articles.length > 1
       ? articles[(currentIndex + 1) % articles.length]
       : undefined;
+
+  useEffect(() => {
+    const updateVisibility = () => {
+      setShowBackToTop(window.scrollY > 600);
+    };
+
+    updateVisibility();
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -698,6 +725,19 @@ export default function ArticleDetail({ article }: { article: Article }) {
           </Button>
         </div>
       </footer>
+
+      {showBackToTop && (
+        <Button
+          type="button"
+          size="icon"
+          onClick={scrollToTop}
+          aria-label={t.backToTop}
+          title={t.backToTop}
+          className="fixed bottom-5 right-5 z-50 size-11 rounded-full shadow-lg sm:bottom-8 sm:right-8"
+        >
+          <ArrowUp />
+        </Button>
+      )}
     </div>
   );
 }
