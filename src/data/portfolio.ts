@@ -272,6 +272,7 @@ export const experiences = [
       id: [
         "Mengembangkan dan memelihara RESTful API menggunakan Golang, Python, dan JavaScript.",
         "Membangun integrasi chat media sosial dan fitur percakapan terpusat.",
+        "Mengintegrasikan API OpenAI, model bahasa besar (LLM), dan fitur pembuatan gambar berbasis AI ke dalam aplikasi untuk mendukung pembuatan konten otomatis.",
         "Mengembangkan landing page responsif menggunakan Next.js, React, TypeScript, dan Tailwind CSS.",
         "Menerapkan peta interaktif, navigasi responsif, optimasi gambar, dan peningkatan performa.",
         "Mengintegrasikan object storage untuk file aplikasi dan aset digital.",
@@ -281,6 +282,7 @@ export const experiences = [
       en: [
         "Develop and maintain RESTful APIs using Golang, Python, and JavaScript.",
         "Build social media chat integrations and centralized conversation features.",
+        "Integrate OpenAI APIs, Large Language Models (LLMs), and AI-powered image generation into applications to support automated content generation.",
         "Develop responsive landing pages using Next.js, React, TypeScript, and Tailwind CSS.",
         "Implement interactive maps, responsive navigation, image optimization, and performance improvements.",
         "Integrate object storage for application files and digital assets.",
